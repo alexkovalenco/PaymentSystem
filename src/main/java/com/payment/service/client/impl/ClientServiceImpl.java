@@ -7,6 +7,7 @@ import com.payment.model.Client;
 import com.payment.repository.client.ClientRepository;
 import com.payment.service.account.AccountService;
 import com.payment.service.client.ClientService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,13 +16,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ClientServiceImpl implements ClientService {
 
-    @Autowired
-    private ClientRepository clientRepository;
-
-    @Autowired
-    private AccountService accountService;
+    private final ClientRepository clientRepository;
+    private final AccountService accountService;
 
     @Override
     public Client create(ClientDTO item) {

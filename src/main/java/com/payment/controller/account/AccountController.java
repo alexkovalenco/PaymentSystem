@@ -1,34 +1,23 @@
 package com.payment.controller.account;
 
 import com.payment.dto.DTOHelper;
-import com.payment.dto.account.AccountDTO;
 import com.payment.dto.account.AccountViewDTO;
-import com.payment.dto.client.ClientDTO;
 import com.payment.exception.ResourceNotFoundException;
 import com.payment.model.Account;
-import com.payment.model.Client;
-import com.payment.model.Employee;
-import com.payment.repository.EmployeeRepository;
-import com.payment.repository.account.AccountRepository;
 import com.payment.service.account.AccountService;
-import com.payment.service.client.ClientService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.math.BigInteger;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/account")
+@RequiredArgsConstructor
 public class AccountController {
 
-    @Autowired
-    AccountService accountService;
+    private final AccountService accountService;
 
     @GetMapping("/{id}")
     public ResponseEntity getAccountById(@PathVariable(value = "id") BigInteger id)
