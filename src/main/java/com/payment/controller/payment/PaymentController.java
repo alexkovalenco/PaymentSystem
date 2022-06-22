@@ -22,8 +22,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/payment")
@@ -35,7 +38,10 @@ public class PaymentController {
     @PostMapping(path="/create", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity createPayment(@RequestBody PaymentDTO paymentDTO) {
         Payment payment = paymentService.create(paymentDTO);
-        return new ResponseEntity<>("\"payment_id\": " + payment.getId(), HttpStatus.CREATED);
+        Map<String, BigInteger> result = new HashMap() {{
+            put("payment_id", payment.getId());
+        }};
+        return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
     @PostMapping(path="/create/pack", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
@@ -45,7 +51,7 @@ public class PaymentController {
     }
 
     @PostMapping(path="/logs", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity getPaymentLogs(@RequestBody PaymentLogDTO paymentLogDTO)  {
+    public ResponseEntity<List<PaymentLogViewDTO>> getPaymentLogs(@RequestBody PaymentLogDTO paymentLogDTO)  {
         return ResponseEntity.ok().body(paymentService.getPaymentLogs(paymentLogDTO));
 
     }

@@ -20,10 +20,10 @@ public class AccountController {
     private final AccountService accountService;
 
     @GetMapping("/{id}")
-    public ResponseEntity getAccountById(@PathVariable(value = "id") BigInteger id)
+    public ResponseEntity<Account> getAccountById(@PathVariable(value = "id") BigInteger id)
             throws ResourceNotFoundException {
         Account account = accountService.findOne(id);
-        if(account == null){
+        if (account == null) {
             throw new ResourceNotFoundException("Account not found for this id :: " + id);
         }
 
@@ -31,7 +31,7 @@ public class AccountController {
     }
 
     @GetMapping("/client_id/{id}")
-    public ResponseEntity getClientById(@PathVariable(value = "id") BigInteger id) {
+    public ResponseEntity<List<AccountViewDTO>> getClientById(@PathVariable(value = "id") BigInteger id) {
         List<Account> accounts = accountService.findAllByClientId(id);
         List<AccountViewDTO> accountViewDTOList = DTOHelper.parseAccountToDto(accounts);
         return ResponseEntity.ok().body(accountViewDTOList);

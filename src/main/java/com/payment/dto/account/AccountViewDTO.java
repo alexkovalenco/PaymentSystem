@@ -1,5 +1,6 @@
 package com.payment.dto.account;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.payment.model.Account;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,15 +8,18 @@ import lombok.NoArgsConstructor;
 @Data
 public class AccountViewDTO {
 
-	private String account_id;
-	private String account_num;
-	private String account_type;
+	@JsonProperty("account_id")
+	private String accountId;
+	@JsonProperty("account_num")
+	private String accountNum;
+	@JsonProperty("account_type")
+	private String accountType;
 	private Double balance;
 
 	public AccountViewDTO(Account account){
-		this.account_id = account.getId().toString();
-		this.account_num = account.getAccountNum();
-		this.account_type = account.getAccountType();
+		this.accountId = account.getId().toString();
+		this.accountNum = account.getAccountNum();
+		this.accountType = account.getAccountType();
 		this.balance = account.getBalance();
 	}
 

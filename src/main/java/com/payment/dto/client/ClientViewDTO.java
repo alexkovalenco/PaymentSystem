@@ -1,5 +1,6 @@
 package com.payment.dto.client;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.payment.model.Account;
 import com.payment.model.Client;
 import lombok.Data;
@@ -7,12 +8,14 @@ import lombok.Data;
 @Data
 public class ClientViewDTO {
 
-	private String first_name;
-	private String last_name;
+	@JsonProperty("first_name")
+	private String firstName;
+	@JsonProperty("last_name")
+	private String lastName;
 
 	public ClientViewDTO(Client client){
-		this.first_name = client.getFirstName();
-		this.last_name = client.getLastName();
+		this.firstName = client.getFirstName();
+		this.lastName = client.getLastName();
 	}
 
 }
