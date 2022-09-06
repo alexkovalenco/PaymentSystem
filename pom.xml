@@ -5,12 +5,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>net.guides.springboot2</groupId>
-	<artifactId>PaymentSystem</artifactId>
+	<artifactId>Products</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>PaymentSystem</name>
-	<description>PaymentSystem</description>
+	<name>Products</name>
+	<description>Products</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
